@@ -7,8 +7,8 @@ class UtilitiesTest < Test::Unit::TestCase
     assert_raise ArgumentError do Location.new('some','silliness') end
   end
 
-  def test_location_to_str
+  def test_location_to_s
     l = Location.new(123.4,678)
-    assert_equal '123.4,678', l.to_str
+    assert_equal '123.4,678', l.to_s
   end
 end

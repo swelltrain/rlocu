@@ -10,7 +10,7 @@ module Rlocu
       @long = long
     end
 
-    def to_str
+    def to_s
       "#{lat},#{long}"
     end
   end
@@ -21,8 +21,8 @@ module Rlocu
       @loc2 = loc2
     end
 
-    def to_str
-      "#{@loc1.to_str}|#{@loc2.to_str}"
+    def to_s
+      "#{@loc1.to_s}|#{@loc2.to_s}"
     end
   end
 
