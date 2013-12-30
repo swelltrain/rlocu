@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../lib/utilities.rb'
+require_relative '../lib/rlocu'
 
 class UtilitiesTest < Test::Unit::TestCase
   include Rlocu
