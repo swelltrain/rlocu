@@ -11,4 +11,11 @@ class UtilitiesTest < Test::Unit::TestCase
     l = Location.new(123.4,678)
     assert_equal '123.4,678', l.to_s
   end
+
+  def test_encode
+    #params = {name: 'bamboo thai', postal_code: '90278'}
+    skip "insert your api into .config"
+    #assert_equal 'api_key=YOUR_API_HERE&name=bamboo%20thai&postal_code=90278', Rlocu.encode(params)
+  end
+
 end
