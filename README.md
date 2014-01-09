@@ -20,8 +20,8 @@ Or install it yourself as:
 
 When you require Rlocu it runs config! on itself to set api_key and http_base.  It reads these values from a YAML .config file in .lib/ exa:
 
-API_KEY: 'yourapikeyyourapikeyyourapikey'
-HTTP_BASE: 'https://api.locu.com/v1_0/'
+    API_KEY: 'yourapikeyyourapikeyyourapikey'
+    HTTP_BASE: 'https://api.locu.com/v1_0/'
 
 ## Usage
 
