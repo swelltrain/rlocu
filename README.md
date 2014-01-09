@@ -28,7 +28,7 @@ When you require Rlocu it runs config! on itself to set api_key and http_base.  
 Right now the only functionality covered is Venue Search to search for venues, and Venue Details which gets you menus, etc.
 Everything is under the Rlocu namespace. 
 
-## Venue Search
+### Venue Search
 Pass a hash of params to Rlocu::VenueSearch.query()
 
 Returns an array of venues (Rlocu::Venue)
@@ -39,7 +39,7 @@ Or you can pass it a block to iterate through the venues:
       puts v.name
     end
 
-## Venue Details
+### Venue Details
 You can pass an array of up to 5 Venues to Rlocu::VenueDetails()
 
 Returns an array of Rlocu::Venues with the detail data (the venue search and detail search have overlapping attributes).
@@ -53,7 +53,7 @@ Or you can pass it a block to iterate through the venues:
       puts v.twitter_id
     end
 
-Object Space
+### Object Space
 The object space essentially follows the Locu API with two little utility objects:
 RLocu::Location
 Rlocu::Bounds
