@@ -20,6 +20,7 @@ Or install it yourself as:
 
 When you require Rlocu it runs config! on itself to set api_key and http_base.  It reads these values from a YAML .config file in .lib/ exa:
 
+
     API_KEY: 'yourapikeyyourapikeyyourapikey'
     HTTP_BASE: 'https://api.locu.com/v1_0/'
 
@@ -27,6 +28,7 @@ When you require Rlocu it runs config! on itself to set api_key and http_base.  
 
 Right now the only functionality covered is Venue Search to search for venues, and Venue Details which gets you menus, etc.
 Everything is under the Rlocu namespace. 
+
 
 ### Venue Search
 Pass a hash of params to Rlocu::VenueSearch.query()
@@ -38,6 +40,7 @@ Or you can pass it a block to iterate through the venues:
     Rlocu::VenueSearch.query(postal_code: '90278', cuisine: 'Thai') do |v|
       puts v.name
     end
+
 
 ### Venue Details
 You can pass an array of up to 5 Venues to Rlocu::VenueDetails()
