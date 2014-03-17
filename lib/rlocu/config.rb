@@ -19,5 +19,4 @@ module Rlocu
 
   end
 
-  config!
 end
