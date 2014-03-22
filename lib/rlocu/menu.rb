@@ -13,6 +13,31 @@ module Rlocu
       meta_sections.each {|h| @sections << Section.new(h)}
     end
 
+    def to_s
+      str = "#{name}\n"
+      sections.each do |section|
+        str << "-----#{section.name}-----\n"
+        section.subsections.each do |subsection|
+          str << "---#{subsection.name}---\n"
+          subsection.contents.each do |content|
+            case content 
+            when SectionText
+              str << "SECTION TEXT #{content.to_s}\n"
+            when MenuItem
+              str << "MENU ITEM #{content.name} #{content.description} #{content.price}\n"
+              content.option_groups.each do |opt_group|
+                str << "OPTION GROUP #{opt_group.text}\n"
+                opt_group.options.each do |option|
+                  str < "OPTION    #{option.to_s}\n"
+                end
+              end
+            end
+          end
+        end
+      end
+      str
+    end
+
   end
 
   class Section
@@ -52,7 +77,6 @@ module Rlocu
         end  
       end
     end
-
   end
 
   class SectionText
@@ -66,7 +90,6 @@ module Rlocu
     def to_s
       @text
     end
-  
   end
 
 # create a to_s for each that can be over-ridden by the user
@@ -103,13 +126,10 @@ module Rlocu
       @options = []
       meta_options.each {|h| @options << Option.new(h) } if meta_options
     end
-
-
   end
 
   class Option
-    attr_accessor :name
-    attr_writer :price
+    attr_accessor :name, :price
 
     def initialize(meta_option)
       @name = meta_option['name']
@@ -125,6 +145,5 @@ module Rlocu
     def to_s
       "#{name} #{price}"
     end
-
   end
 end
