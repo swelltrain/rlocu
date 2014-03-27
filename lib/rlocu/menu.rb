@@ -14,7 +14,7 @@ module Rlocu
     end
 
     def to_s
-      str = "#{name}\n"
+      str = "Menu: #{name}\n"
       sections.each do |section|
         str << "-----#{section.name}-----\n"
         section.subsections.each do |subsection|
@@ -22,13 +22,13 @@ module Rlocu
           subsection.contents.each do |content|
             case content 
             when SectionText
-              str << "SECTION TEXT #{content.to_s}\n"
+              str << "SECTION TEXT : #{content.to_s}\n"
             when MenuItem
-              str << "MENU ITEM #{content.name} #{content.description} #{content.price}\n"
+              str << "MENU ITEM : #{content.name} #{content.description} #{content.price}\n"
               content.option_groups.each do |opt_group|
-                str << "OPTION GROUP #{opt_group.text}\n"
+                str << "OPTION GROUP : #{opt_group.text}\n"
                 opt_group.options.each do |option|
-                  str < "OPTION    #{option.to_s}\n"
+                  str << "OPTION  :  #{option.to_s}\n"
                 end
               end
             end
