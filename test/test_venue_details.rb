@@ -1,7 +1,6 @@
-require 'test/unit'
-require_relative '../lib/rlocu'
+require 'set'
 
-class VenueDetailsTest < Test::Unit::TestCase
+class VenueDetailsTest < MiniTest::Unit::TestCase
   include Rlocu
   def test_reduce_ids
     venues = Set.new

@@ -1,10 +1,10 @@
-require 'test/unit'
+require 'minitest/autorun'
 require_relative '../lib/rlocu'
 
-class UtilitiesTest < Test::Unit::TestCase
+class UtilitiesTest < MiniTest::Unit::TestCase
   include Rlocu
   def test_location_raises
-    assert_raise ArgumentError do Location.new('some','silliness') end
+    assert_raises ArgumentError do Location.new('some','silliness') end
   end
 
   def test_location_to_s

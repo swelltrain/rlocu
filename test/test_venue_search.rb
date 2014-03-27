@@ -1,10 +1,8 @@
-require 'test/unit'
-require_relative '../lib/rlocu'
                         
-class VenueSearchTest < Test::Unit::TestCase
+class VenueSearchTest < MiniTest::Unit::TestCase
   include Rlocu
   def test_bad_arg_throws_error
-    assert_raise ArgumentError do VenueSearch.query(bad_param: 'blah') end
+    assert_raises ArgumentError do VenueSearch.query(bad_param: 'blah') end
   end
 
   def test_venue_search
