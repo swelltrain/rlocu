@@ -12,13 +12,13 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
+Or install it yourself:
 
     $ gem install rlocu
 
 ## Getting Started
 
-When you require Rlocu it runs config! on itself to set api_key and http_base.  It reads these values from a YAML .config file in .lib/ exa:
+Before executing any Rlocu queries you need to config it.  Config takes a file parameter which is expected to be a YAML file with these two parameters:
 
 
     API_KEY: 'yourapikeyyourapikeyyourapikey'
@@ -60,6 +60,9 @@ Or you can pass it a block to iterate through the venues:
 The object space essentially follows the Locu API with two little utility objects:
 RLocu::Location
 Rlocu::Bounds
+
+The RLocu::Menu object has a to_s instance method which does an ugly ascii print of the menu, and should give
+you a fairly decent example for displaying.
 
 ## Contributing
 
