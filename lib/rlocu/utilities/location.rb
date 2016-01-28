@@ -9,6 +9,14 @@ module Rlocu
         @lat = lat
         @long = long
       end
+
+      def to_s
+        "#{lat},#{long}"
+      end
+
+      def to_lat_long
+        to_s
+      end
     end
   end
 end
