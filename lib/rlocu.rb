@@ -1,6 +1,7 @@
+require 'open-uri'
+
 module Rlocu
   RlocuError = Class.new(StandardError)
-
   class << self
     def configure
       yield self
