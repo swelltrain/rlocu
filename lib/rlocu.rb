@@ -18,5 +18,6 @@ module Rlocu
   end
 end
 
-require 'rlocu/version'
-require 'rlocu/utilities/location'
+require_relative 'rlocu/version'
+require_relative 'rlocu/utilities/location'
+require_relative 'rlocu/utilities/bounds'
