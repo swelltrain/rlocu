@@ -90,24 +90,28 @@ module Rlocu
       end
     end
 
-  # create a to_s for each that can be over-ridden by the user
-    class MenuItem
-      attr_accessor :type, :name, :description, :price
-      attr_reader :option_groups
-
-      def initialize(meta_menu_item)
-        @type = meta_menu_item['type']
-        @name = meta_menu_item['name']
-        @description = meta_menu_item['description']
-        @price = meta_menu_item['price']
-        self.option_groups = meta_menu_item['option_groups']
+    class Item
+      def initialize(item_hash)
+        # self.option_groups = item_hash['option_groups']
       end
 
       def option_groups=(meta_option_groups)
         @option_groups = []
         meta_option_groups.each { |h| @option_groups << OptionGroup.new(h) } if meta_option_groups
       end
+    end
 
+    class MenuItem < Item
+      attr_reader :menu_name, :section_name, :subsection_name, :section_text, :type, :currency_symbol
+      def initialize(menu_item_hash)
+        @menu_name = menu_item_hash['menu_name']
+        @section_name = menu_item_hash['section_name']
+        @subsection_name = menu_item_hash['subsection_name']
+        @section_text = menu_item_hash['section_text']
+        @type = menu_item_hash['type']
+        @currency_symbol = menu_item_hash['currency_symbol']
+        super
+      end
     end
 
     class OptionGroup
