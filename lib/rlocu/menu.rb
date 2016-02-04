@@ -55,23 +55,21 @@ module Rlocu
     end
 
     class Subsection
-      attr_accessor :name
-      attr_reader :contents
-
-      def initialize(meta_subsection)
-        @name = meta_subsection['subsection_name']
-        self.contents = meta_subsection['contents']
+      attr_reader :name, :contents
+      def initialize(subsection_hash)
+        @name = subsection_hash['subsection_name']
+        self.contents = subsection_hash['contents']
       end
 
-      def contents=(meta_contents)
+      def contents=(contents_list)
         @contents = []
-        meta_contents.each do |h|
+        contents_list.each do |content|
           #TODO: raise error if type is different
-          @contents << case h['type']
+          @contents << case content['type']
             when 'SECTION_TEXT'
-              SectionText.new(h)
+              SectionText.new(content)
             when 'ITEM'
-              MenuItem.new(h)
+              MenuItem.new(content)
           end
         end
       end

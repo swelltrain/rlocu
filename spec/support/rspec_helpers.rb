@@ -26,6 +26,14 @@ module RspecHelpers
   def menu_section_text_hash
     {'type' => 'spec_type', 'text' => 'spec_text'}
   end
+
+  def menu_section_contents_hash
+    {'type' => 'SECTION_TEXT', 'text' => 'text_spec'}
+  end
+
+  def menu_subsection_hash
+    {'subsection_name' => 'spec_subsection_name', 'contents' => [menu_section_contents_hash]}
+  end
 end
 
 RSpec.configure do |config|
