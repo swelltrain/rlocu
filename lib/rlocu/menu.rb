@@ -111,18 +111,16 @@ module Rlocu
     end
 
     class OptionGroup
-      attr_accessor :type, :text
-      attr_reader :options
-
-      def initialize(meta_option_group)
-        @type = meta_option_group['type']
-        @text = meta_option_group['text']
-        self.options = meta_option_group['options']
+      attr_reader :options, :type, :text
+      def initialize(option_group_hash)
+        @type = option_group_hash['type']
+        @text = option_group_hash['text']
+        self.options = option_group_hash['options']
       end
 
-      def options=(meta_options)
+      def options=(options_list)
         @options = []
-        meta_options.each {|h| @options << Option.new(h) } if meta_options
+        options_list.each { |option| @options << Option.new(option) }
       end
     end
 
