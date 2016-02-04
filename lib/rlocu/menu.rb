@@ -107,14 +107,20 @@ module Rlocu
     end
 
     class MenuItem < Item
-      attr_reader :menu_name, :section_name, :subsection_name, :section_text, :type, :currency_symbol
+      attr_reader :menu_name, :section_name, :subsection_name, :section_text, :type, :currency_symbol, :photos
       def initialize(menu_item_hash)
         @menu_name = menu_item_hash['menu_name']
         @section_name = menu_item_hash['section_name']
         @subsection_name = menu_item_hash['subsection_name']
         @section_text = menu_item_hash['section_text']
         @currency_symbol = menu_item_hash['currency_symbol']
+        self.photos = menu_item_hash['photos']
         super
+      end
+
+      def photos=(photos)
+        # TODO: Are these really comma sep string?
+        @photos = photos.split(',')
       end
     end
 
