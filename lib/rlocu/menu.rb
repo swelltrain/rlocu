@@ -20,7 +20,7 @@ module Rlocu
         section.subsections.each do |subsection|
           str << "---#{subsection.name}---\n"
           subsection.contents.each do |content|
-            case content 
+            case content
             when SectionText
               str << "SECTION TEXT : #{content.to_s}\n"
             when MenuItem
@@ -72,7 +72,7 @@ module Rlocu
               SectionText.new(h)
             when 'ITEM'
               MenuItem.new(h)
-          end  
+          end
         end
       end
     end
@@ -100,7 +100,7 @@ module Rlocu
         @name = meta_menu_item['name']
         @description = meta_menu_item['description']
         @price = meta_menu_item['price']
-        self.option_groups = meta_menu_item['option_groups'] 
+        self.option_groups = meta_menu_item['option_groups']
       end
 
       def option_groups=(meta_option_groups)
@@ -117,7 +117,7 @@ module Rlocu
       def initialize(meta_option_group)
         @type = meta_option_group['type']
         @text = meta_option_group['text']
-        self.options = meta_option_group['options'] 
+        self.options = meta_option_group['options']
       end
 
       def options=(meta_options)
@@ -127,17 +127,11 @@ module Rlocu
     end
 
     class Option
-      attr_accessor :name, :price
-
-      def initialize(meta_option)
-        @name = meta_option['name']
-        @price = meta_option['price']
-      end
-
-      def price
+      attr_reader :name, :price
+      def initialize(option_hash)
+        @name = option_hash['name']
+        @price = option_hash['price']
         # price can be relative indicated by a + in the price
-        # not currently doing anything w it 
-        @price
       end
 
       def to_s
