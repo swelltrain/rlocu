@@ -22,6 +22,10 @@ module RspecHelpers
   def menu_menu_item_hash
     {'menu_name' => 'spec_menu_name', 'section_name' => 'spec_section_name', 'subsection_name' => 'spec_subsection_name', 'section_text' => 'spec_section_text', 'currency_symbol' => 'currency_spec', 'photos' => 'string, of, urls'}.merge item_hash
   end
+
+  def menu_section_text_hash
+    {'type' => 'spec_type', 'text' => 'spec_text'}
+  end
 end
 
 RSpec.configure do |config|

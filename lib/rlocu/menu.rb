@@ -78,11 +78,10 @@ module Rlocu
     end
 
     class SectionText
-      attr_accessor :type, :text
-
-      def initialize(meta_section_text)
-        @type = meta_section_text['type']
-        @text = meta_section_text['text']
+      attr_reader :type, :text
+      def initialize(section_text_hash)
+        @type = section_text_hash['type']
+        @text = section_text_hash['text']
       end
 
       def to_s
