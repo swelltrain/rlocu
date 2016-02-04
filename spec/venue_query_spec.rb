@@ -1,4 +1,5 @@
 include Rlocu
+require 'config_rlocu_spec_helper'
 
 RSpec.describe VenueQuery, '#new' do
   it 'should raise ArgumentError unless query_fields is a hash' do
