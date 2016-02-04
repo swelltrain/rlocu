@@ -39,19 +39,16 @@ module Rlocu
     end
 
     class Section
-      attr_accessor :name
-      attr_reader :subsections
-
-      def initialize(meta_section)
-        @name = meta_section['section_name']
-        self.subsections = meta_section['subsections']
+      attr_reader :section_name, :subsections
+      def initialize(section_hash)
+        @section_name = section_hash['section_name']
+        self.subsections = section_hash['subsections']
       end
 
-      def subsections=(meta_subsections)
+      def subsections=(subsections_list)
         @subsections = []
-        meta_subsections.each {|h| @subsections << Subsection.new(h)}
+        subsections_list.each { |subsection| @subsections << Subsection.new(subsection) }
       end
-
     end
 
     class Subsection
