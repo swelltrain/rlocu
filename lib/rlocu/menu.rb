@@ -91,13 +91,18 @@ module Rlocu
     end
 
     class Item
+      attr_reader :type, :name, :description, :price, :option_groups
       def initialize(item_hash)
-        # self.option_groups = item_hash['option_groups']
+        @type = item_hash['type']
+        @name = item_hash['name']
+        @description = item_hash['description']
+        @price = item_hash['price']
+        self.option_groups = item_hash['option_groups']
       end
 
-      def option_groups=(meta_option_groups)
+      def option_groups=(option_groups_list)
         @option_groups = []
-        meta_option_groups.each { |h| @option_groups << OptionGroup.new(h) } if meta_option_groups
+        option_groups_list.each { |option_group| @option_groups << OptionGroup.new(option_group) }
       end
     end
 
@@ -108,7 +113,6 @@ module Rlocu
         @section_name = menu_item_hash['section_name']
         @subsection_name = menu_item_hash['subsection_name']
         @section_text = menu_item_hash['section_text']
-        @type = menu_item_hash['type']
         @currency_symbol = menu_item_hash['currency_symbol']
         super
       end

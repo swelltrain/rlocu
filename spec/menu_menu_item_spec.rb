@@ -7,7 +7,6 @@ RSpec.describe Menu::MenuItem, '#new' do
     expect(menu_item.section_name).to eq(menu_menu_item_hash['section_name'])
     expect(menu_item.subsection_name).to eq(menu_menu_item_hash['subsection_name'])
     expect(menu_item.section_text).to eq(menu_menu_item_hash['section_text'])
-    expect(menu_item.type).to eq(menu_menu_item_hash['type'])
     expect(menu_item.currency_symbol).to eq(menu_menu_item_hash['currency_symbol'])
   end
 end
