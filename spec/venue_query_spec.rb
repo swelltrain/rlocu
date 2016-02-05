@@ -18,3 +18,11 @@ RSpec.describe VenueQuery, '#new' do
     expect{ VenueQuery.new(query_fields: {}, return_fields: ['spec']) }.to raise_error(ArgumentError)
   end
 end
+
+RSpec.describe VenueQuery, '#query', type: :integration do
+  it 'should return JSON' do
+    venue_query = VenueQuery.new(query_fields: {'locu_id' => '45d336c20afe6c39abc2'}, return_fields: %w{name})
+    result = venue_query.query
+    expect(result['venues']).not_to be_empty
+  end
+end
