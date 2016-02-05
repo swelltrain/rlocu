@@ -38,6 +38,10 @@ module RspecHelpers
   def menu_section_hash
     {'section_name' => 'spec_section_name', 'subsections' => [menu_subsection_hash]}
   end
+
+  def menu_hash
+    {'menu_name' => 'menu_name_spec', 'sections' => [menu_section_hash]}
+  end
 end
 
 RSpec.configure do |config|

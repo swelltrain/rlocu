@@ -1,16 +1,15 @@
 module Rlocu
   class Menu
-    attr_accessor :name
-    attr_reader :sections
+    attr_reader :menu_name, :sections
 
-    def initialize(meta_menu)
-      @name = meta_menu['menu_name']
-      self.sections = meta_menu['sections']
+    def initialize(menu_hash)
+      @menu_name = menu_hash['menu_name']
+      self.sections = menu_hash['sections']
     end
 
-    def sections=(meta_sections)
+    def sections=(sections_list)
       @sections = []
-      meta_sections.each {|h| @sections << Section.new(h)}
+      sections_list.each { |section| @sections << Section.new(section) }
     end
 
     def to_s
