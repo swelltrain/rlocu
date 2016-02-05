@@ -51,9 +51,9 @@ module Rlocu
     end
 
     class Subsection
-      attr_reader :name, :contents
+      attr_reader :subsection_name, :contents
       def initialize(subsection_hash)
-        @name = subsection_hash['subsection_name']
+        @subsection_name = subsection_hash['subsection_name']
         self.contents = subsection_hash['contents']
       end
 
