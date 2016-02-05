@@ -15,7 +15,6 @@ end
 
 require_relative 'rlocu/version'
 require_relative 'rlocu/utilities/lat_long'
-require_relative 'rlocu/utilities/bounds'
 require_relative 'rlocu/menu'
 require_relative 'rlocu/query'
 require_relative 'rlocu/venue_query'

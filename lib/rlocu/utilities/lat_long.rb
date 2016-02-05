@@ -10,6 +10,10 @@ module Rlocu
         @long = long
       end
 
+      def self.bounds(lat_lng1, lat_lng2)
+        "#{@lat_lng1.to_s}|#{@lat_lng2.to_s}"
+      end
+
       def to_s
         "#{lat},#{long}"
       end
