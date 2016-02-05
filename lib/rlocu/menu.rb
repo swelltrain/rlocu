@@ -13,11 +13,11 @@ module Rlocu
     end
 
     def to_s
-      str = "Menu: #{name}\n"
+      str = "Menu: #{menu_name}\n"
       sections.each do |section|
-        str << "-----#{section.name}-----\n"
+        str << "-----#{section.section_name}-----\n"
         section.subsections.each do |subsection|
-          str << "---#{subsection.name}---\n"
+          str << "---#{subsection.subsection_name}---\n"
           subsection.contents.each do |content|
             case content
             when SectionText
