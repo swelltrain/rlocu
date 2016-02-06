@@ -1,34 +1,76 @@
 module Rlocu
   class Venue
-    PROPERTIES = [:name, :locality, :street_address, 
-      :cuisines, :region, :long, :phone, :postal_code, 
-      :categories, :has_menu, :country, :lat, :id, 
-      :website_url, :resource_uri]
-    # the Venue class encapsulates the venue_details also
-    # keeping them separate for maintainability when they eventually change
-    VENUE_DETAILS = [:open_hours, :facebook_url, :twitter_id,
-      :similar_venues, :redirected_from]
-    attr_reader :menus
-    (PROPERTIES | VENUE_DETAILS).each {|prop| attr_accessor prop}
+    ExternalID = Struct.new(:id, :url, :mobile_url)
+    Catetory = Struct.new(:name, :str_id)
+    Location = Struct.new(:address1, :address2, :address3, :locality, :region, :postal_code, :country, :geo)
+    Contact = Struct.new(:phone, :fax, :email, :phones, :faxes, :emails, :business_owner)
+    # skipping Locu object for now
+    Delivery = Struct.new(:will_deliver, :hours, :minimum_order, :areas)
+    # skipping Extended object for now
+    Media = Struct.new(:cover_photo, :venue_photos, :menu_photos, :logos, :videos)
+    ATTRIBUTES = %i{locu_id name short_name description website_url menu_url menus menu_items open_hours external redirected_from categories location contact locu delivery extended media}
 
-    def initialize(meta_venue)
-      @menus = []
-      update(meta_venue)
-    end
-    
-    def update(meta_venue)
-      meta_venue.each {|k,v| self.send("#{k.to_s}=",v) }
+    ATTRIBUTES.each { |prop| attr_accessor prop }
+
+    def initialize(venue)
+      build_from_hash(venue)
     end
 
-    # override some of the writers
-    def menus=(meta_menus)
-      # menus is an array of menu hashes
-      # don't keep adding and duplicating if there are already menus
-      @menus = []        
-      meta_menus.each do |h|
-        @menus << Menu.new(h)
+    def build_from_hash(venue)
+      venue.each { |k,v| self.send("#{k.to_s}=", v) }
+    end
+
+    def external=(externals_list)
+      @external = []
+      externals_list.each { |external_id| @external << ExternalID.new(id: external_id['id'], url: external_id['url'], mobile_url: external_id['mobile_url'])}
+    end
+
+    def categories=(categories_list)
+      @categories = []
+      categories_list.each do |category|
+        c = Category.new
+        category.each { |k,v| c.send("#{k.to_s}=", v) }
+        @categories << c
       end
     end
 
+    def location=(location)
+      l = Location.new
+      location.each { |k,v| l.send("#{k.to_s}=", v) }
+      @location = l
+    end
+
+    def contact=(contact)
+      c = Contact.new
+      contact.each { |k,v| c.send("#{k.to_s}=", v) }
+      @location = c
+    end
+
+    def delivery=(delivery)
+      d = Delivery.new
+      delivery.each { |k,v| d.send("#{k.to_s}=", v) }
+      @location = l
+    end
+
+    def extended=(extended)
+      e = Extended.new
+      extended.each { |k,v| e.send("#{k.to_s}=", v) }
+      @extended = e
+    end
+
+    def media=(media)
+      m = Media.new
+      media.each { |k,v| m.send("#{k.to_s}=", v) }
+      @media = m
+    end
+
+    def menus=(menu_list)
+      @menus = []
+      menu_list.each do |menu|
+        @menus << Menu.new(menu)
+      end
+    end
+
+    # skipping menu_items since they can be accessed through the menus and only 15 are returned currently
   end
 end
