@@ -9,7 +9,7 @@ module Rlocu
 
     def sections=(sections_list)
       @sections = []
-      sections_list.each { |section| @sections << Section.new(section) }
+      sections_list.each { |section| @sections << Section.new(section) } unless sections_list.nil?
     end
 
     def to_s
@@ -46,7 +46,7 @@ module Rlocu
 
       def subsections=(subsections_list)
         @subsections = []
-        subsections_list.each { |subsection| @subsections << Subsection.new(subsection) }
+        subsections_list.each { |subsection| @subsections << Subsection.new(subsection) } unless subsections_list.nil?
       end
     end
 
@@ -59,6 +59,7 @@ module Rlocu
 
       def contents=(contents_list)
         @contents = []
+        return if contents_list.nil?
         contents_list.each do |content|
           #TODO: raise error if type is different
           @contents << case content['type']
@@ -95,6 +96,7 @@ module Rlocu
 
       def option_groups=(option_groups_list)
         @option_groups = []
+        return if option_groups_list.nil?
         option_groups_list.each { |option_group| @option_groups << OptionGroup.new(option_group) }
       end
     end
@@ -107,13 +109,8 @@ module Rlocu
         @subsection_name = menu_item_hash['subsection_name']
         @section_text = menu_item_hash['section_text']
         @currency_symbol = menu_item_hash['currency_symbol']
-        self.photos = menu_item_hash['photos']
+        @photos = menu_item_hash['photos']
         super
-      end
-
-      def photos=(photos)
-        # TODO: Are these really comma sep string?
-        @photos = photos.split(',')
       end
     end
 
@@ -127,7 +124,7 @@ module Rlocu
 
       def options=(options_list)
         @options = []
-        options_list.each { |option| @options << Option.new(option) }
+        options_list.each { |option| @options << Option.new(option) } unless options_list.nil?
       end
     end
 
