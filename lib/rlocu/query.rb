@@ -22,6 +22,8 @@ module Rlocu
       def valid?
         # check if the condition and value are appropriate
         return false unless ValidConditions.include? condition
+        return false if condition =~ /\$in_lat_lng/ && !value.is_a?(Utilities::LatLongRadius)
+        true
       end
     end
   end
