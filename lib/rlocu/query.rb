@@ -15,7 +15,15 @@ module Rlocu
       end
 
       def to_h
-        # if key is location and value is_a? LatLong
+        if condition
+          if value.is_a?(Utilities::LatLongRadius)
+            {key => {'geo' => {condition => value.to_a}}}
+          else
+            {key => {condition => value}}
+          end
+        else
+          {key => value}
+        end
       end
 
       private
