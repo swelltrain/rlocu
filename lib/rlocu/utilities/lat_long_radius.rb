@@ -19,8 +19,8 @@ module Rlocu
         "#{lat},#{long}"
       end
 
-      def to_h
-        {'geo' => {'$in_lat_lng_radius' => [lat, long, radius]}}
+      def to_a
+        [lat, long, radius]
       end
     end
   end
