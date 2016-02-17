@@ -18,14 +18,18 @@ module Rlocu
       @query_conditions.map(&:to_h)
     end
 
+    def form_data
+      {api_key: Rlocu.api_key, fields: return_fields, venue_queries: query_conditions }.to_json
+    end
+
     def query
-      form_data = {api_key: Rlocu.api_key, fields: return_fields, query_conditions: query_conditions }.to_json
       result = JSON.parse(RestClient.post(base_url, form_data))
       # TODO handle failure gracefully
       result['venues'].each.reduce([]) { |accum, venue| accum << Rlocu::Venue.new(venue) }
     end
 
     def query_by_location
+
     end
   end
 end

@@ -21,7 +21,8 @@ end
 
 RSpec.describe VenueQuery, '#query', type: :integration do
   it 'should return an array of venues' do
-    venue_query = VenueQuery.new(query_fields: {'locu_id' => '45d336c20afe6c39abc2'}, return_fields: ['locu_id', 'name', 'menus'])
+    query_conditions = [Query::QueryCondition.new(key: 'locu_id', value: '45d336c20afe6c39abc2')]
+    venue_query = VenueQuery.new(query_conditions: query_conditions, return_fields: ['locu_id', 'name', 'menus'])
     expect(venue_query.query).not_to be_empty
   end
 end
