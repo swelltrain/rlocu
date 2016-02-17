@@ -13,6 +13,9 @@ module Rlocu
     ATTRIBUTES.each { |prop| attr_accessor prop }
 
     def initialize(venue)
+      @external = []
+      @categories = []
+      @menus = []
       build_from_hash(venue)
     end
 
