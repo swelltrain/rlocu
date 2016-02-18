@@ -5,6 +5,20 @@ module Rlocu
     end
 
     class QueryCondition
+      attr_reader :key_value_conditions
+      def initialize(key_value_conditions:)
+        @key_value_conditions = key_value_conditions
+      end
+
+      def to_h
+        h = {}
+        key_value_conditions.each { |condition| h.merge!(condition.to_h) }
+        h
+      end
+    end
+
+
+    class KeyValueCondition
       attr_reader :key, :value, :condition
       ValidConditions = %w{$present $gt $lt $ge $le $contains_any $contains_all $contains_none $in_lat_lng_bbox $in_lat_lng_radius} << nil
       def initialize(key:, value:, condition: nil)
