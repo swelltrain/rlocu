@@ -1,17 +1,17 @@
 include Rlocu::Query
 include Rlocu::Utilities
 
-RSpec.describe QueryCondition, '#new' do
-  context "when condition is not one of #{QueryCondition::ValidConditions}" do
+RSpec.describe KeyValueCondition, '#new' do
+  context "when condition is not one of #{KeyValueCondition::ValidConditions}" do
     it 'should raise ArgumentError' do
-      expect{ QueryCondition.new(key: 'spec', value: 'spec', condition: 'spec') }.to raise_error(ArgumentError)
+      expect{ KeyValueCondition.new(key: 'spec', value: 'spec', condition: 'spec') }.to raise_error(ArgumentError)
     end
   end
 
-  context 'when condition is in lat long radius' do
+  context 'when condition is $in_lat_lng_radius' do
     context 'when value is not a LatLongRadius' do
       it 'should raise an ArgumentError' do
-        expect{ QueryCondition.new(key: 'location', value: 'spec', condition: '$in_lat_lng_radius') }.to raise_error(ArgumentError)
+        expect{ KeyValueCondition.new(key: 'location', value: 'spec', condition: '$in_lat_lng_radius') }.to raise_error(ArgumentError)
       end
     end
   end
