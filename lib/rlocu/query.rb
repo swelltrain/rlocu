@@ -17,7 +17,6 @@ module Rlocu
       end
     end
 
-
     class KeyValueCondition
       attr_reader :key, :value, :condition
       ValidConditions = %w{$present $gt $lt $ge $le $contains_any $contains_all $contains_none $in_lat_lng_bbox $in_lat_lng_radius} << nil

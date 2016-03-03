@@ -34,5 +34,4 @@ RSpec.describe QueryCondition, '#to_h' do
   it 'should return a hash' do
     expect(query_condition.to_h).to be_a_kind_of(Hash)
   end
-
 end
