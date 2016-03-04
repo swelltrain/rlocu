@@ -3,7 +3,6 @@ module Rlocu
     def initialize(return_fields: [])
       @return_fields = return_fields.empty? ? %w{locu_id name location description menus} : return_fields
       @key_value_conditions = []
-      @venue_query = nil
     end
 
     def with_menus
