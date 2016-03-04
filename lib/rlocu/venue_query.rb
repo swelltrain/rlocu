@@ -27,9 +27,5 @@ module Rlocu
       # TODO handle failure gracefully
       result['venues'].each.reduce([]) { |accum, venue| accum << Rlocu::Venue.new(venue) }
     end
-
-    def query_by_location
-
-    end
   end
 end
