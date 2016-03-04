@@ -7,18 +7,18 @@ module Rlocu
     end
 
     def with_menus
-      key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'menus', value: true, condition: '$present')
+      @key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'menus', value: true, condition: '$present')
       self
     end
 
     def in_lat_long_radius(lat:, long:, radius:)
       lat_long_radius = Utilities::LatLongRadius.new(lat: lat, long: long, radius: radius)
-      key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'location', value: lat_long_radius, condition: '$in_lat_lng_radius')
+      @key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'location', value: lat_long_radius, condition: '$in_lat_lng_radius')
       self
     end
 
     def locu_id(locu_id)
-      key_value_conditions = [QueryBuilder::KeyValueCondition.new(key: 'locu_id', value: locu_id)]
+      @key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'locu_id', value: locu_id)
       self
     end
 
