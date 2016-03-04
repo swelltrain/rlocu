@@ -16,11 +16,22 @@ module Rlocu
       @external = []
       @categories = []
       @menus = []
+      @not_supported_attributes = []
       build_from_hash(venue)
     end
 
     def build_from_hash(venue)
-      venue.each { |k,v| self.send("#{k.to_s}=", v) }
+      venue.each do |k,v|
+        begin
+          self.send("#{k.to_s}=", v)
+        rescue NoMethodError
+          @not_supported_attributes << k
+        end
+      end
+    end
+
+    def not_supported_attributes
+      @not_supported_attributes
     end
 
     def external=(externals_list)
