@@ -1,4 +1,4 @@
-include Rlocu::Query
+include Rlocu::QueryBuilder
 include Rlocu::Utilities
 
 RSpec.describe KeyValueCondition, '#new' do

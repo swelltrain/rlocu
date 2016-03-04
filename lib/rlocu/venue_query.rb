@@ -3,7 +3,7 @@ require 'json'
 
 module Rlocu
   class VenueQuery
-    include Rlocu::Query
+    include Rlocu::QueryBuilder
 
     attr_reader :return_fields
     def initialize(query_conditions:, return_fields:)

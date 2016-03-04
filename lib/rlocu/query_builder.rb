@@ -1,5 +1,5 @@
 module Rlocu
-  module Query
+  module QueryBuilder
     def base_url
       "https://api.locu.com/v2/venue/search"
     end
