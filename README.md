@@ -1,6 +1,6 @@
 # Rlocu
 
-A simple, unoffical, and currently incomplete wrapper for the Locu API (locu.com)
+A simple, unoffical, and currently incomplete wrapper for the Locu Version 2 API (locu.com)
 
 ## Installation
 
@@ -18,51 +18,39 @@ Or install it yourself:
 
 ## Getting Started
 
-Before executing any Rlocu queries you need to config it.  Config takes a file parameter which is expected to be a YAML file with these two parameters:
+Before executing any Rlocu queries you need to config it.
 
-
-    API_KEY: 'yourapikeyyourapikeyyourapikey'
-    HTTP_BASE: 'https://api.locu.com/v1_0/'
+    Rlocu.config do |conf|
+      conf.api_key = 'yourapikeyyourapikeyyourapikey'
+    end
 
 ## Usage
+In general you search Locu with `RLocu::VenueSearch`.
 
-Right now the only functionality covered is Venue Search to search for venues, and Venue Details which gets you menus, etc.
-Everything is under the Rlocu namespace. 
+The class takes an optional parameter `return_fields` which is an array of venue fields* (properties) that should be returned.  It defaults to:
+
+    %w{locu_id name location description menus}
+
+*See Locu Developer Docs for available fields.
+
+There are several instance methods that follow the typical usage pattern.  Each adds a `QueryBuilder::KeyValueCondition` to the `@key_value_conditions` array and returns `self` so they can be chained together.  This creates a restrictive && filter (ie search for venues that satisfy this condition and this condition.)  Then you call `search` to perform the search with the query that has been built.
+
+Example:
+
+    venues = Rlocu::VenueSearch.new.in_lat_long_radius(lat: my_latitude, long: my_longitude, radius: 2000).with_menus.search
+
+The instance methods have the following naming convention:
+
+`with_[propery name]` means that property is $present.
+
+`[property name](value)` means that property has that value.
+
+## The Objects
+
+`Rlocu::Venue` has many `Rlocu::Menu`.  Both objects map instance variables to (most of) the properties from the Locu API.
 
 
-### Venue Search
-Pass a hash of params to Rlocu::VenueSearch.query()
-
-Returns an array of venues (Rlocu::Venue)
-
-Or you can pass it a block to iterate through the venues:
-
-    Rlocu::VenueSearch.query(postal_code: '90278', cuisine: 'Thai') do |v|
-      puts v.name
-    end
-
-
-### Venue Details
-You can pass an array of up to 5 Venues to Rlocu::VenueDetails()
-
-Returns an array of Rlocu::Venues with the detail data (the venue search and detail search have overlapping attributes).
-
-Or you can pass it a block to iterate through the venues:
-
-    # get 25 venues in zip code 90278
-    venues = VenueSearch.query(postal_code: '90278')
-    
-    Rlocu::VenueDetails.query(venues[0..4]) do |v|
-      puts v.twitter_id
-    end
-
-### Object Space
-The object space essentially follows the Locu API with two little utility objects:
-RLocu::Location
-Rlocu::Bounds
-
-The RLocu::Menu object has a to_s instance method which does an ugly ascii print of the menu, and should give
-you a fairly decent example for displaying.
+`RLocu::Menu#to_s` creates a rough  ascii print of the menu, but should give a fairly decent example for displaying.
 
 ## Contributing
 
