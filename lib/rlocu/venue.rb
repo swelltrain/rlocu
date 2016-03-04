@@ -1,7 +1,7 @@
 module Rlocu
   class Venue
     ExternalID = Struct.new(:id, :url, :mobile_url)
-    Catetory = Struct.new(:name, :str_id)
+    Category = Struct.new(:name, :str_id)
     Location = Struct.new(:address1, :address2, :address3, :locality, :region, :postal_code, :country, :geo)
     Contact = Struct.new(:phone, :fax, :email, :phones, :faxes, :emails, :business_owner)
     # skipping Locu object for now
