@@ -21,7 +21,7 @@ module Rlocu
       self
     end
 
-    def categories_in(categories)
+    def in_categories(categories)
       raise ArgumentError unless categories.is_a? Array
       @key_value_conditions << QueryBuilder::KeyValueCondition.new(key: 'categories', value: categories, condition: '$contains_any')
       self
