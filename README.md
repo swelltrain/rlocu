@@ -24,9 +24,9 @@ Or install it yourself:
 
 ## Getting Started
 
-Before executing any Rlocu queries you need to config it.
+Before executing any Rlocu queries you need to configure it.
 
-    Rlocu.config do |conf|
+    Rlocu.configure do |conf|
       conf.api_key = 'yourapikeyyourapikeyyourapikey'
     end
 
