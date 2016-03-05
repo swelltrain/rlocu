@@ -1,6 +1,12 @@
 # Rlocu
 
-A simple, unoffical, and currently incomplete wrapper for the Locu Version 2 API (locu.com)
+A simple, unoffical, and somewhat complete wrapper for the Locu Version 2 API (locu.com)
+
+Currrently supports Venue Searches by
+* lat long radius
+* locu id
+* in categories
+* with menus
 
 ## Installation
 
