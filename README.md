@@ -45,12 +45,6 @@ Example:
 
     venues = Rlocu::VenueSearch.new.in_lat_long_radius(lat: my_latitude, long: my_longitude, radius: 2000).with_menus.search
 
-The instance methods have the following naming convention:
-
-`with_[propery name]` means that property is $present.
-
-`[property name](value)` means that property has that value.
-
 ## The Objects
 
 `Rlocu::Venue` has many `Rlocu::Menu`.  Both objects map instance variables to (most of) the properties from the Locu API.
