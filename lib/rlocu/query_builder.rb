@@ -31,6 +31,8 @@ module Rlocu
         if condition
           if value.is_a?(Utilities::LatLongRadius)
             {key => {'geo' => {condition => value.to_a}}}
+          elsif key == 'categories'
+            {key => {'str_id' => {condition => value}}}
           else
             {key => {condition => value}}
           end
@@ -44,6 +46,7 @@ module Rlocu
         # check if the condition and value are appropriate
         return false unless ValidConditions.include? condition
         return false if condition =~ /\$in_lat_lng/ && !value.is_a?(Utilities::LatLongRadius)
+        return false if condition == '$contains_any' && !value.is_a?(Array)
         true
       end
     end
