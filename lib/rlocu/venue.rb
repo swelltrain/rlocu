@@ -2,7 +2,6 @@ module Rlocu
   class Venue
     ExternalID = Struct.new(:id, :url, :mobile_url)
     Category = Struct.new(:name, :str_id)
-    Location = Struct.new(:address1, :address2, :address3, :locality, :region, :postal_code, :country, :geo)
     Contact = Struct.new(:phone, :fax, :email, :phones, :faxes, :emails, :business_owner)
     # skipping Locu object for now
     Delivery = Struct.new(:will_deliver, :hours, :minimum_order, :areas)
@@ -28,6 +27,14 @@ module Rlocu
           @not_supported_attributes << k
         end
       end
+    end
+
+    def latitude
+      location.latitude
+    end
+
+    def longitude
+      location.longitude
     end
 
     def not_supported_attributes
@@ -82,6 +89,28 @@ module Rlocu
       @menus = []
       menu_list.each do |menu|
         @menus << Menu.new(menu)
+      end
+    end
+
+    class Location
+      attr_reader :address1, :address2, :address3, :locality, :region, :postal_code, :country, :geo
+      def initialize(location)
+        @address1 = location['address1']
+        @address2 = location['address2']
+        @address3 = location['address3']
+        @locality = location['locality']
+        @region = location['region']
+        @postal_code = location['postal_code']
+        @country = location['country']
+        @geo = GeoJSON.new(location['geo'])
+      end
+
+      def latitude
+        geo.latitude
+      end
+
+      def longitude
+        geo.longitude
       end
     end
 
