@@ -56,9 +56,7 @@ module Rlocu
     end
 
     def location=(location)
-      l = Location.new
-      location.each { |k,v| l.send("#{k.to_s}=", v) }
-      @location = l
+      @location = Location.new(location)
     end
 
     def contact=(contact)
