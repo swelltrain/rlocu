@@ -34,6 +34,7 @@ module Rlocu
     end
 
     private
+
     attr_reader :return_fields, :key_value_conditions
   end
 end

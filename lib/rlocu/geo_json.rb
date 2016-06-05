@@ -16,6 +16,7 @@ module Rlocu
     end
 
     private
+
     attr_reader :coordinates
   end
 end

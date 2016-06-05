@@ -6,6 +6,7 @@ module Rlocu
     include Rlocu::QueryBuilder
 
     attr_reader :return_fields
+
     def initialize(query_conditions:, return_fields:)
       raise ArgumentError, 'Query Conditions Param must be an array of QueryConditions.' if !query_conditions.is_a?(Array) || !query_conditions.first.is_a?(QueryCondition)
 
@@ -23,6 +24,7 @@ module Rlocu
     end
 
     def query
+      # TODO wrap this in a timeout
       result = JSON.parse(RestClient.post(base_url, form_data))
       # TODO handle failure gracefully
       result['venues'].each.reduce([]) { |accum, venue| accum << Rlocu::Venue.new(venue) }

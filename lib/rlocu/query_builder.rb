@@ -42,6 +42,7 @@ module Rlocu
       end
 
       private
+
       def valid?
         # check if the condition and value are appropriate
         return false unless ValidConditions.include? condition
