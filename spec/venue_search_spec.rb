@@ -22,3 +22,10 @@ RSpec.describe VenueSearch, '#locu_id' do
     expect(venue_search.locu_id('spec')).to eq(venue_search)
   end
 end
+
+RSpec.describe VenueSearch, '#name' do
+  it 'returns itself' do
+    venue_search = VenueSearch.new
+    expect(venue_search.name('spec')).to eq(venue_search)
+  end
+end
