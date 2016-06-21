@@ -4,6 +4,7 @@ require 'json'
 module Rlocu
   class VenueQuery
     include Rlocu::QueryBuilder
+    VenueQueryError = Class.new(StandardError)
 
     attr_reader :return_fields
 
@@ -26,7 +27,8 @@ module Rlocu
     def query
       # TODO wrap this in a timeout
       result = JSON.parse(RestClient.post(base_url, form_data))
-      # TODO handle failure gracefully
+      status = result['status']
+      raise VenueQueryError.new("Query failed with status [#{status}] and http_status [#{result['http_status']}]") unless status == 'success'
       result['venues'].each.reduce([]) { |accum, venue| accum << Rlocu::Venue.new(venue) }
     end
   end
