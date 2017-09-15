@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "rlocu"
   spec.version       = Rlocu::VERSION
   spec.authors       = ["Stephen Philp"]
-  spec.email         = ["stephen@stephenphilp.com"]
+  spec.email         = ["swelltrain@gmail.com"]
   spec.description   = %q{A simple ruby wrapper for the Locu API}
   spec.summary       = %q{Rlocu is a ruby wrapper for Locu's API. The Locu API gives you access to real-time local business data, from opening hours to price lists, such as restaurant menus.}
   spec.homepage      = "https://github.com/swelltrain/rlocu"
