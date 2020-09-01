@@ -1,7 +1,6 @@
 # Rlocu
 
 A simple, unoffical, and somewhat complete wrapper for the Locu Version 2 API (locu.com)
-Originally written as part of development for [cliobri.com](https://www.cliobri.com).
 
 Currrently supports Venue Searches by
 * name
